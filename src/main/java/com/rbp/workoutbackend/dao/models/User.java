@@ -2,13 +2,13 @@ package com.rbp.workoutbackend.dao.models;
 
 import java.util.List;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.cassandra.mapping.PrimaryKey;
+import org.springframework.data.cassandra.mapping.Table;
 
-@Document
+@Table(value = "user")
 public class User {
 	
-	@Id
+	@PrimaryKey
 	private String userId;
 	
 	private String firstName;
@@ -20,10 +20,19 @@ public class User {
 		
 	}
 	
-	public User(String firstName, String lastName, String email) {
+	public User(String userId, String firstName, String lastName, String email) {
+		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getFirstName() {
@@ -48,6 +57,14 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<Workout> getWorkouts() {
+		return workouts;
+	}
+
+	public void setWorkouts(List<Workout> workouts) {
+		this.workouts = workouts;
 	}
 	
 }

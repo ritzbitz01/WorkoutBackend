@@ -2,44 +2,47 @@ package com.rbp.workoutbackend.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.rbp.workoutbackend.HomeController;
 import com.rbp.workoutbackend.dao.UserDao;
+import com.rbp.workoutbackend.dao.cassandra.CassandraUserDao;
 import com.rbp.workoutbackend.dao.models.User;
-import com.rbp.workoutbackend.dao.mongodb.MongoUserDao;
 
-@Controller
+@RestController
+@RequestMapping("/users")
 public class UserController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+
+	@Autowired
+	UserDao userDao;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/users", method = RequestMethod.GET)
-	public List<User> getAllUsers(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	@RequestMapping(method = RequestMethod.GET)
+	public List<User> getAllUsers() {
+		logger.info("Getting all users");
+
+		List<User> userList = userDao.getAllUsers();
 		
-		List<User> userList = new ArrayList<>();
-		
+
 		return userList;
 	}
-	
-	@RequestMapping(value="/users", method=RequestMethod.POST)
+
+	@RequestMapping(method=RequestMethod.POST)
 	@ResponseBody
 	public User saveUser(@RequestBody User user) {
-		UserDao userDao = new MongoUserDao();
-		return userDao.save(user);
+		//UserDao userDao = new CassandraUserDao();
+		return userDao.saveUser(user);
 	}
 
 }

@@ -2,11 +2,18 @@ package com.rbp.workoutbackend.dao;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.cassandra.core.CassandraOperations;
+import org.springframework.data.repository.NoRepositoryBean;
+
 import com.rbp.workoutbackend.dao.models.User;
-import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface UserDao extends MongoRepository<User, String> {
+@NoRepositoryBean
+public interface UserDao {
 
-	public User findByFirstName(String firstName);
-	public List<User> findByLastName(String lastName);
+
+	public List<User> getAllUsers();
+	public User saveUser(User user);
+	public User findById(String userId);
+
 }
