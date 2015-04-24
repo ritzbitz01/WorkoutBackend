@@ -1,11 +1,11 @@
 package com.rbp.workoutbackend.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rbp.workoutbackend.dao.UserDao;
-import com.rbp.workoutbackend.dao.cassandra.CassandraUserDao;
 import com.rbp.workoutbackend.dao.models.User;
+import com.rbp.workoutbackend.dao.models.Workout;
 
 @RestController
 @RequestMapping("/users")
@@ -43,6 +43,13 @@ public class UserController {
 	public User saveUser(@RequestBody User user) {
 		//UserDao userDao = new CassandraUserDao();
 		return userDao.saveUser(user);
+	}
+	
+	@RequestMapping(value="/{userId}/workouts", method=RequestMethod.POST)
+	@ResponseBody
+	public void addWorkout(@PathVariable String userId, @RequestBody Workout workout) {
+		//UserDao userDao = new CassandraUserDao();
+		userDao.addWorkout(userId, workout);
 	}
 
 }

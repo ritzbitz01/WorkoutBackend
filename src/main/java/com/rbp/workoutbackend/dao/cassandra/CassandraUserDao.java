@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.rbp.workoutbackend.dao.UserDao;
 import com.rbp.workoutbackend.dao.models.User;
+import com.rbp.workoutbackend.dao.models.Workout;
 
 @Repository
 public class CassandraUserDao implements UserDao {
@@ -45,6 +46,10 @@ public class CassandraUserDao implements UserDao {
 		return cassandraTemplate.selectOneById(User.class, userId);
 	}
 
+	@Override
+	public void addWorkout(String userId, Workout workout) {
+		
+	}
 
 //	@Override
 //	public long count() {

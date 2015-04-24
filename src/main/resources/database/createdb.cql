@@ -7,3 +7,12 @@ CREATE TABLE IF NOT EXISTS workout.user (
 	email text,
 	PRIMARY KEY (userId)
 );
+
+CREATE TABLE IF NOT EXISTS workout.workout (
+	workoutId text,
+	name text,
+	description text,
+	type text,
+	exercises text,
+	PRIMARY KEY (workoutId)
+);
