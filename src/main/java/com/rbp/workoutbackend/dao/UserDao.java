@@ -14,6 +14,7 @@ public interface UserDao {
 	public List<User> getAllUsers();
 	public User saveUser(User user);
 	public User findById(String userId);
-	public void addWorkout(String userId, Workout workout);
+	public void addWorkout(String userId, String workoutId);
+	
 
 }

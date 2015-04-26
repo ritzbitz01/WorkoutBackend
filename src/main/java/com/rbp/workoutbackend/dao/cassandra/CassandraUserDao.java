@@ -18,6 +18,7 @@ public class CassandraUserDao implements UserDao {
 	private final CassandraOperations cassandraTemplate;
 	
 	private String getAllUsersQuery = "select * from user";
+	private String getWorkoutTemplate = "select * from workout where workoutId = ?";
 	
 	@Autowired
 	CassandraUserDao(CassandraOperations cassandraTemplate) {
@@ -47,76 +48,10 @@ public class CassandraUserDao implements UserDao {
 	}
 
 	@Override
-	public void addWorkout(String userId, Workout workout) {
+	public void addWorkout(String userId, String workoutTemplateId) {
+		
+		Workout workout = cassandraTemplate.selectOneById(Workout.class, workoutTemplateId);
+		workout.setWorkoutId(UUID.randomUUID().toString());
 		
 	}
-
-//	@Override
-//	public long count() {
-//		return 0;
-//	}
-//
-//
-//	@Override
-//	public void delete(MapId arg0) {
-//		template.delete(arg0);
-//		
-//	}
-//
-//
-//	@Override
-//	public void delete(User arg0) {
-//		template.delete(arg0);
-//	}
-//
-//
-//	@Override
-//	public void delete(Iterable<? extends User> arg0) {
-//		template.delete(arg0);
-//	}
-//
-//
-//	@Override
-//	public void deleteAll() {
-//		template.delete(User.class);
-//	}
-//
-//
-//	@Override
-//	public boolean exists(MapId arg0) {
-//		return template.exists(User.class, arg0);
-//	}
-//
-//
-//	@Override
-//	public Iterable<User> findAll() {
-//		return template.select(getAllUsersQuery, User.class);
-//	}
-//
-//
-//	@Override
-//	public Iterable<User> findAll(Iterable<MapId> arg0) {
-//		return template.select(getAllUsersQuery, User.class);
-//	}
-//
-//
-//	@Override
-//	public User findOne(MapId arg0) {
-//		return template.selectOne(getAllUsersQuery, User.class);
-//	}
-//
-//
-//	@Override
-//	public <S extends User> S save(S arg0) {
-//		template.insert(arg0);
-//		return arg0;
-//	}
-//
-//
-//	@Override
-//	public <S extends User> Iterable<S> save(Iterable<S> arg0) {
-//		template.insert(arg0);
-//		return arg0;
-//	}
-
 }

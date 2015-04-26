@@ -1,0 +1,39 @@
+Register User
+POST to /users route with User payload
+Save user to database
+
+Login
+GET to /users with userId and password
+get user from databae and verify password
+
+Create Workout
+POST to /workouts with workout payload
+Add workout to workouts database table as well as user table
+
+Create Exercise
+POST to /exercises and add to /workout and /users
+
+Get list of workouts for use
+SELECT workouts from user
+Need a table that stores all workouts associated with a user.  Each instance will be a row with a userId.
+
+Add a workout to a user
+get all workouts from workouttemplate table
+when workout selected, add workout instance to the user table
+
+
+Tables Needed
+User
+userworkout
+workoutexercise
+workouttemplates
+exercisetemplates
+
+templates are only used in creation, each instance is its own object with its own id.
+
+One exercise can exist in multiple workouts
+workout table will have a list of exercise ids
+user table will have a list of workout ids
+
+if the workouttemplate is updated, not going to update the instances.
+
