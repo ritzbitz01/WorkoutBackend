@@ -26,3 +26,13 @@ CREATE TABLE IF NOT EXISTS workout.workout (
 	exercises list<text>,
 	PRIMARY KEY (workoutId)
 );
+
+CREATE TABLE IF NOT EXISTS workout.exercise (
+	exerciseId text,
+	name text,
+	description text,
+	numReps int,
+	numSets int,
+	weight int,
+	PRIMARY KEY (exerciseId)
+);
