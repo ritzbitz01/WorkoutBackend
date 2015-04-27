@@ -10,7 +10,7 @@ import org.springframework.data.cassandra.mapping.Table;
 public class Workout {
 
 	@PrimaryKey
-	private String workoutId;
+	protected String workoutId;
 	
 	@Column
 	private String name;

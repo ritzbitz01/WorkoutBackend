@@ -36,3 +36,6 @@ CREATE TABLE IF NOT EXISTS workout.exercise (
 	weight int,
 	PRIMARY KEY (exerciseId)
 );
+
+
+

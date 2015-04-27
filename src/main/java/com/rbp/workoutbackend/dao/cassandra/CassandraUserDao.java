@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.rbp.workoutbackend.dao.UserDao;
 import com.rbp.workoutbackend.dao.models.User;
+import com.rbp.workoutbackend.dao.models.UserWorkout;
 import com.rbp.workoutbackend.dao.models.Workout;
 
 @Repository
@@ -51,7 +52,12 @@ public class CassandraUserDao implements UserDao {
 	public void addWorkout(String userId, String workoutTemplateId) {
 		
 		Workout workout = cassandraTemplate.selectOneById(Workout.class, workoutTemplateId);
+		// THis is an instance, give it a unique id.
 		workout.setWorkoutId(UUID.randomUUID().toString());
+		String workoutId = UUID.randomUUID().toString();
+		UserWorkout userWorkout = new UserWorkout(workoutId, userId, workout.getName(), workout.getDescription(), workout.getType() );
+		
+		cassandraTemplate.insert(userWorkout);
 		
 	}
 }
