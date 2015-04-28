@@ -8,26 +8,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rbp.workoutbackend.dao.WorkoutDao;
-import com.rbp.workoutbackend.dao.models.Workout;
+import com.rbp.workoutbackend.dao.ExerciseDao;
+import com.rbp.workoutbackend.dao.models.Exercise;
 
 @RestController
-@RequestMapping("/workouts")
-public class WorkoutController {
-	
+@RequestMapping("/exercises")
+public class ExerciseController {
+
 	@Autowired
-	WorkoutDao workoutDao;
+	ExerciseDao exerciseDao;
 	
-	@RequestMapping(value="/{workoutId}", method = RequestMethod.GET)
-	public Workout getWorkout(@PathVariable String workoutId) {
-		Workout workout = workoutDao.getWorkout(workoutId);
-		return workout;
+	@RequestMapping(value="/{exerciseId}", method = RequestMethod.GET)
+	public Exercise getWorkout(@PathVariable String exerciseId) {
+		Exercise exercise = exerciseDao.getExercise(exerciseId);
+		return exercise;
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
 	@ResponseBody
-	public Workout saveWorkout(@RequestBody Workout workout) {
-		return workoutDao.saveWorkout(workout);
+	public Exercise saveExercise(@RequestBody Exercise exercise) {
+		return exerciseDao.saveExercise(exercise);
 	}
 
 }

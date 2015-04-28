@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS workout.userworkout (
 	name text,
 	description text,
 	type text,
-	exercises list<text>
+	exercises list<text>,
 	PRIMARY KEY (workoutid, userid)
 );
 

@@ -5,10 +5,12 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.cassandra.core.CassandraOperations;
+import org.springframework.stereotype.Repository;
 
 import com.rbp.workoutbackend.dao.WorkoutDao;
 import com.rbp.workoutbackend.dao.models.Workout;
 
+@Repository
 public class CassandraWorkoutDao implements WorkoutDao {
 
 	private final CassandraOperations cassandraTemplate;
@@ -36,8 +38,7 @@ public class CassandraWorkoutDao implements WorkoutDao {
 
 	@Override
 	public List<Workout> getAllWorkouts() {
-		List<Workout> workoutList = cassandraTemplate.select(getAllWorkoutsQuery, Workout.class);
-		return workoutList;
+		return cassandraTemplate.select(getAllWorkoutsQuery, Workout.class);
 	}
 
 }
