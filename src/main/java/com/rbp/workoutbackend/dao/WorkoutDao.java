@@ -14,4 +14,6 @@ public interface WorkoutDao {
 	public Workout getWorkout(String workoutId);
 	
 	public List<Workout> getAllWorkouts();
+	
+	public Workout addExercise(String workoutId, String exerciseId);
 }

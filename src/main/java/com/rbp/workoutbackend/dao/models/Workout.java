@@ -22,7 +22,7 @@ public class Workout {
 	private WorkoutType type;
 	
 	@Column 
-	private List<Exercise> exercises;
+	private List<String> exerciseIds;
 	
 	public Workout() {
 		
@@ -66,11 +66,11 @@ public class Workout {
 		this.type = type;
 	}
 
-	public List<Exercise> getExercises() {
-		return exercises;
+	public List<String> getExercises() {
+		return exerciseIds;
 	}
 
-	public void setExercises(List<Exercise> exercises) {
-		this.exercises = exercises;
+	public void setExercises(List<String> exerciseIds) {
+		this.exerciseIds = exerciseIds;
 	}
 }

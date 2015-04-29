@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rbp.workoutbackend.dao.WorkoutDao;
+import com.rbp.workoutbackend.dao.models.Exercise;
 import com.rbp.workoutbackend.dao.models.Workout;
 
 @RestController
@@ -28,6 +29,12 @@ public class WorkoutController {
 	@ResponseBody
 	public Workout saveWorkout(@RequestBody Workout workout) {
 		return workoutDao.saveWorkout(workout);
+	}
+	
+	@RequestMapping(value="/{workoutId}/exercises", method=RequestMethod.POST)
+	@ResponseBody
+	public Workout addExercise(@PathVariable String workoutId, @RequestBody Exercise exercise) {
+		return workoutDao.addExercise(workoutId, exercise.getExerciseId());
 	}
 
 }

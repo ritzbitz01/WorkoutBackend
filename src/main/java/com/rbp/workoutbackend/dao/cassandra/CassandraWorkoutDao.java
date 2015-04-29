@@ -41,4 +41,10 @@ public class CassandraWorkoutDao implements WorkoutDao {
 		return cassandraTemplate.select(getAllWorkoutsQuery, Workout.class);
 	}
 
+	@Override
+	public Workout addExercise(String workoutId, String exerciseId) {
+		Workout workout = getWorkout(workoutId);
+		workout.getExercises().add(exerciseId);
+		return workout;
+	}
 }
