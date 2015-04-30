@@ -37,5 +37,15 @@ CREATE TABLE IF NOT EXISTS workout.exercise (
 	PRIMARY KEY (exerciseId)
 );
 
+CREATE TABLE IF NOT EXISTS workout.userworkoutexercise (
+	workoutId text,
+	exerciseId text,
+	name text,
+	description text,
+	numReps int,
+	numSets int,
+	weight int,
+	PRIMARY KEY (exerciseId)
+);
 
 

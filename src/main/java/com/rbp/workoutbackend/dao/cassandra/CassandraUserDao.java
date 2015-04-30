@@ -52,8 +52,7 @@ public class CassandraUserDao implements UserDao {
 	public void addWorkout(String userId, String workoutTemplateId) {
 		
 		Workout workout = cassandraTemplate.selectOneById(Workout.class, workoutTemplateId);
-		// THis is an instance, give it a unique id.
-		workout.setWorkoutId(UUID.randomUUID().toString());
+		// Create a user workout with a unique id
 		String workoutId = UUID.randomUUID().toString();
 		UserWorkout userWorkout = new UserWorkout(workoutId, userId, workout.getName(), workout.getDescription(), workout.getType() );
 		
