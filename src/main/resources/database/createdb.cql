@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS workout.userworkout (
 	name text,
 	description text,
 	type text,
+	date timestamp,
 	exercises list<text>,
 	PRIMARY KEY (workoutid, userid)
 );
@@ -38,14 +39,14 @@ CREATE TABLE IF NOT EXISTS workout.exercise (
 );
 
 CREATE TABLE IF NOT EXISTS workout.userworkoutexercise (
-	workoutId text,
 	exerciseId text,
+	workoutId text,
 	name text,
 	description text,
 	numReps int,
 	numSets int,
 	weight int,
-	PRIMARY KEY (exerciseId)
+	PRIMARY KEY (exerciseId, workoutId)
 );
 
 
